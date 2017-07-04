@@ -1,3 +1,9 @@
+/*
+ * A simple mutli-twist glass/vase model.
+ * Copyright 2017, Mitch Patenaude patenaude@gmail.com
+ * Licensed under the LGPL 3.0
+ */
+
 num_sides=7;
 radius=15;
 wall_thickness=1;

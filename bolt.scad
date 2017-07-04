@@ -1,3 +1,10 @@
+/*
+ * Bolt & Nut modules for OpenSCAD
+ * Copyright 2017, Mitch Patenaude patenaude@gmail.com
+ * Licensed under the LGPL 3.0
+ */
+
+// Example bolt
 bolt(head_height=10,
      head_size=15,
      threads_per_cm=5,
@@ -5,6 +12,7 @@ bolt(head_height=10,
      shaft_length=30,
      shaft_radius=8);
 
+// Example Nut
 translate([0,50,0])
     nut(head_height=10,
         head_size=15,
