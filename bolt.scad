@@ -39,12 +39,14 @@ module nut(head_height, head_size, hole_radius, threads_per_cm, thread_depth)
             threaded_shaft(head_height+20, hole_radius, threads_per_cm, thread_depth);                                 
     }                                                                
 }
+
 module head(height, size) {
     head_radius = size/(2*sin(30));
 
     linear_extrude(height=height)
         circle(r=head_radius, $fn=6);
 }
+
 module threaded_shaft(length, 
                       radius, 
                       threads_per_cm, 
