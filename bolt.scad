@@ -4,7 +4,7 @@
  * Licensed under the LGPL 3.0
  */
 
-// Example bolt
+// Example 15mm bolt
 bolt(head_height=10,
      head_size=15,
      threads_per_cm=5,
@@ -12,7 +12,7 @@ bolt(head_height=10,
      shaft_length=30,
      shaft_radius=8);
 
-// Example Nut
+// Example 15mm Nut to fit bolt above
 translate([0,50,0])
     nut(head_height=10,
         head_size=15,
@@ -20,24 +20,55 @@ translate([0,50,0])
         threads_per_cm=5,
         thread_depth=1);    
 
+// Example 1/2" bolt
+color("red") translate([50,0,0])
+    bolt(head_height=1/4*25.4,
+         head_size=1/2*25.4,
+         threads_per_cm=20/2.54,
+         thread_depth=1/32*25.4,
+         shaft_length=3/4*25.4,
+         shaft_radius=1/4*25.4);
+
+// Example 1/2" nut
+color("red") translate([50,50,0])
+    nut(head_height=1/4*25.4,
+        head_size=1/2*25.4,
+        hole_radius=1/4*25.4,
+        threads_per_cm=20/2.54,
+        thread_depth = 1/32*25.4);
+
+/*
+ * Bolt module
+ * All measurements are in mm, except for the thread pitch, which is 
+ * in threads/cm, as labeled.
+ *
+ * head_height: how thick the head will be in mm
+ * head_size: 9 here should yield a 9mm bolt head.  For a 1/4" bolt head
+ *    use 1/4*25.4 (25.4 mm/inch)
+ * threads_per_cm: raw measurement of thread pitch.  To get threads/inch divide
+ *    the value by 2.54
+ */
 module bolt(head_height, head_size, threads_per_cm, thread_depth, shaft_length, shaft_radius) 
 {
     
     head(head_height, head_size);
     translate([0,0,head_height])
         threaded_shaft(shaft_length, 
-                       shaft_radius*1.05, 
+                       shaft_radius, 
                        threads_per_cm, 
                        thread_depth);
 }
 
-module nut(head_height, head_size, hole_radius, threads_per_cm, thread_depth)
+/*
+ * Nut Module
+ */
+module nut(head_height, head_size, hole_radius, threads_per_cm, thread_depth, relief=0.25)
 {
     difference() {
         head(head_height, head_size);
         translate([0,0,-10])
-            threaded_shaft(head_height+20, hole_radius, threads_per_cm, thread_depth);                                 
-    }                                                                
+            threaded_shaft(head_height+20, hole_radius + relief, threads_per_cm, thread_depth); 
+    }
 }
 
 module head(height, size) {
