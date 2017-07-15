@@ -61,6 +61,14 @@ module bolt(head_height, head_size, threads_per_cm, thread_depth, shaft_length, 
 
 /*
  * Nut Module
+ *
+ * Similar to the bolt module
+ *
+ * head_height, head_size, thread_depth and threads_per_cm work
+ *   the same as the bolt module
+ * hole_radius: equivalent to shaft_radius in the bolt.  Will be expanded
+ *  (or relieved) by the relief amount.
+ *
  */
 module nut(head_height, head_size, hole_radius, threads_per_cm, thread_depth, relief=0.25)
 {
